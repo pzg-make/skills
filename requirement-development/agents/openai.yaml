@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求开发"
+  short_description: "覆盖需求理解方案设计代码实现测试验证风险评估和交付总结"
+  default_prompt: "使用 $requirement-development 完成需求理解、方案设计、代码实现、测试验证和交付说明。"

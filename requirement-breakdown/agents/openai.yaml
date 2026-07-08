@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求拆分"
+  short_description: "Break down development needs into tasks"
+  default_prompt: "Use $requirement-breakdown to turn this development need into an actionable delivery plan."

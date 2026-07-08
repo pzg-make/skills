@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bug 修复"
+  short_description: "Root-cause bug repair workflow"
+  default_prompt: "Use $fix-bugs to diagnose root cause, choose the right repair scope, fix, and verify this bug."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Builder"
+  short_description: "Import, polish, preserve, and export resumes"
+  default_prompt: "Use $resume-builder to import, edit, preserve formatting, polish, and export a professional resume."
