@@ -1,6 +1,6 @@
 ---
 name: requirement-breakdown
-description: General-purpose development requirement breakdown workflow. Use when Codex is asked to analyze, clarify, split, estimate, or turn any development need into actionable engineering work, including business features, requirement documents, screenshots, meeting notes, feedback records, API changes, frontend or backend work, data model changes, integrations, refactors, performance work, migrations, reliability improvements, testing work, DevOps changes, or vague technical ideas; especially when the user expects scope boundaries, modules, flows, implementation tasks, priorities, dependencies, risks, acceptance criteria, and verification plans.
+description: General-purpose development requirement breakdown workflow. Use when an AI coding tool is asked to analyze, clarify, split, estimate, or turn any development need into actionable engineering work, including business features, requirement documents, screenshots, meeting notes, feedback records, API changes, frontend or backend work, data model changes, integrations, refactors, performance work, migrations, reliability improvements, testing work, DevOps changes, or vague technical ideas; especially when the user expects scope boundaries, modules, flows, implementation tasks, priorities, dependencies, risks, acceptance criteria, and verification plans.
 ---
 
 # General Development Requirement Breakdown Skill

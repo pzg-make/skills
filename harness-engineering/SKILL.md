@@ -1,6 +1,6 @@
 ---
 name: harness-engineering
-description: General-purpose Harness engineering workflow for making repositories AI Coding Agent ready. Use when Codex is asked to add, improve, standardize, or generate project harnesses such as AGENTS.md, ARCHITECTURE.md, structured docs, build/test/lint scripts, bug reproduction scripts, validation rules, agent workflows, CI-ready command entry points, or onboarding rules for a new or poorly documented project.
+description: General-purpose Harness engineering workflow for making repositories AI Coding Agent ready. Use when an AI coding tool is asked to add, improve, standardize, or generate project harnesses such as AGENTS.md, ARCHITECTURE.md, structured docs, build/test/lint scripts, bug reproduction scripts, validation rules, agent workflows, CI-ready command entry points, or onboarding rules for a new or poorly documented project.
 ---
 
 # Harness Engineering
@@ -108,14 +108,14 @@ This skill includes `scripts/generate_harness.py`.
 Use it when a project has little or no Harness structure and the user wants automatic generation. Run from any repository root:
 
 ```bash
-python3 ~/.codex/skills/harness-engineering/scripts/generate_harness.py /path/to/repo
+python3 <skills-dir>/harness-engineering/scripts/generate_harness.py /path/to/repo
 ```
 
 Options:
 
 ```bash
-python3 ~/.codex/skills/harness-engineering/scripts/generate_harness.py /path/to/repo --force
-python3 ~/.codex/skills/harness-engineering/scripts/generate_harness.py /path/to/repo --project-name "My Project"
+python3 <skills-dir>/harness-engineering/scripts/generate_harness.py /path/to/repo --force
+python3 <skills-dir>/harness-engineering/scripts/generate_harness.py /path/to/repo --project-name "My Project"
 ```
 
 Behavior:

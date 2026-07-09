@@ -1,6 +1,6 @@
 ---
 name: fix-bugs
-description: Expert bug investigation and repair workflow. Use when Codex is asked to fix, debug, diagnose, reproduce, verify, or explain a software bug, regression, failing test, production issue, unexpected behavior, interface error, UI display issue, data inconsistency, performance degradation, build failure, flaky issue, or historical logic regression; especially when the user expects root-cause analysis, proportional repair scope, the smallest necessary change within the best root-cause solution, retesting, similar-case checks, final confirmation, and reproduction or solution steps.
+description: Expert bug investigation and repair workflow. Use when an AI coding tool is asked to fix, debug, diagnose, reproduce, verify, or explain a software bug, regression, failing test, production issue, unexpected behavior, interface error, UI display issue, data inconsistency, performance degradation, build failure, flaky issue, or historical logic regression; especially when the user expects root-cause analysis, proportional repair scope, the smallest necessary change within the best root-cause solution, retesting, similar-case checks, final confirmation, and reproduction or solution steps.
 ---
 
 # Bug Fix Skill
@@ -19,6 +19,8 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 6. 必须评估相似问题，避免只针对当前输入过度拟合。
 7. 按风险和复杂度调整流程粒度：小问题保持轻量，复杂问题明确记录取舍、影响面和验证边界。
 8. 输出内容必须覆盖：复现或证据、根因、修改点、验证方式、风险点；不强制套固定大模板。
+9. 复杂或信息不完整的 Bug，先形成可证伪假设，再动代码；不要带着单一猜测直接修改。
+10. 修复前必须定义“完成标准”：原问题如何证明已消失、哪些相似路径需要检查、哪些副作用不能引入。
 
 ## 输入信息
 
@@ -30,6 +32,49 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 - 线上环境信息、版本号、分支名、提交记录。
 
 如果信息不足，不要立即假设结论。应优先基于已有项目代码和日志进行推断；只有关键阻塞信息缺失时，才询问用户。
+
+## 一步到位强化策略
+
+为了减少反复修、反复问、反复跑的情况，处理 Bug 时必须建立一个短闭环：
+
+```text
+现象 → 证据 → 假设 → 最小复现 → 根因 → 修复层级 → 验证矩阵 → 交付结论
+```
+
+### 修复前闸门
+
+除非是非常明确的小改动，否则修改代码前先确认：
+
+- 已区分用户可见现象、日志报错、直接触发点和真正根因。
+- 至少有一个可执行的复现方式、失败测试、请求样例、日志证据或代码级推导。
+- 已列出 1-3 个候选根因，并用代码、测试、日志或运行结果排除明显错误假设。
+- 已确认修复应该落在哪一层：输入校验、状态流、业务规则、接口契约、公共工具、数据模型、并发时序或错误处理。
+- 已知道修复后要跑哪些验证，验证缺失时要补什么测试或说明什么限制。
+
+如果上述条件缺失，不要急着写补丁；先补证据、缩小范围或向用户询问真正阻塞的信息。
+
+### 常见返工原因
+
+遇到以下信号时，要放慢一步重新确认根因：
+
+- 只修了空指针、异常捕获或默认值，但没有解释为什么该值会为空。
+- 只让当前测试通过，但相同字段、相同状态或相同接口还有其他入口。
+- 修复改变了公共方法、返回结构、状态顺序或缓存行为，但没有检查调用方。
+- 复现依赖特定环境、账号、时间、并发或历史数据，但本地验证没有覆盖这些条件。
+- Bug 表现是偶现、时序问题、数据污染或缓存不一致，却只按普通同步逻辑处理。
+- 用户描述的是业务不符合预期，但修复只围绕技术报错，没有确认业务规则。
+
+### 验证矩阵
+
+修复后不要只跑一个 happy path。按风险选择下列验证：
+
+- 原始复现：同样输入、步骤或失败测试必须不再触发问题。
+- 相邻边界：空值、缺失字段、重复请求、非法状态、权限不足、超时、重试、并发或历史数据。
+- 相似入口：同一函数的其他调用方、同一字段的其他使用位置、同一状态流的其他分支。
+- 回归范围：相关模块测试、公共逻辑测试、接口契约测试或构建检查。
+- 副作用检查：日志、缓存、事务、幂等、性能、兼容性、错误返回和用户可见文案。
+
+最终说明必须把“验证了什么”和“没有验证什么”讲清楚。
 
 ## 工作流程
 
@@ -45,6 +90,15 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 - 是否与最近改动、配置、环境、数据有关。
 
 输出初步判断：问题类型、可能影响范围、初步排查方向。
+
+同时建立一个临时假设列表：
+
+- 最可能的根因是什么。
+- 还可能有哪些替代解释。
+- 每个假设需要什么证据来确认或排除。
+- 哪些信息缺失会影响修复方向。
+
+后续定位、复现和验证都要围绕这些假设收敛，不要边猜边改。
 
 ### 2. 结合项目定位问题
 
@@ -63,6 +117,16 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 - 上游输入是什么。
 - 下游影响是什么。
 
+定位时优先从入口到副作用完整走一遍调用链：
+
+- 入口：页面、接口、任务、事件、测试或命令从哪里进入。
+- 转换：参数、DTO、类型转换、默认值、配置和上下文如何变化。
+- 决策：权限、状态、分支、缓存、重试和异常处理在哪里发生。
+- 副作用：数据库、文件、网络、消息、日志、缓存或 UI 状态在哪里改变。
+- 退出：返回值、错误码、响应结构、页面状态或任务结果如何形成。
+
+不要只改报错行；报错行通常只是触发点，不一定是根因位置。
+
 ### 3. 复现 Bug
 
 在修改代码前，尽量先复现问题。复现方式包括：
@@ -77,6 +141,15 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 复现时记录：复现步骤、输入条件、实际结果、报错信息、触发原因。
 
 如果无法完整复现，也要说明当前能够确认的证据和无法复现的原因。
+
+复现优先级：
+
+1. 已有失败测试或用户提供的明确步骤。
+2. 最小化输入或请求样例。
+3. 针对根因假设新增一个先失败的测试。
+4. 基于日志和代码路径的证据链。
+
+如果环境限制导致无法真实复现，应尽量补一个可运行的最小测试来锁定问题。
 
 ### 4. 确认根因
 
@@ -94,6 +167,7 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 - 为什么当前输入会失败。
 - 是否存在历史设计缺陷。
 - 是否存在数据、配置、并发、边界值问题。
+- 为什么选择的修复点能消除根因，而不是只缓解当前现象。
 
 示例：
 
@@ -138,6 +212,16 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 
 修复前应说明：准备修改哪些文件、修改原因、是否需要新增测试、是否存在兼容性风险。
 
+#### 方案自检
+
+动手前用以下问题检查方案是否容易返工：
+
+- 如果同样输入从另一个入口进来，这个修复还成立吗？
+- 如果字段为空、重复、乱序、超时或部分失败，这个修复还成立吗？
+- 如果调用方依赖旧行为，是否需要兼容处理或迁移说明？
+- 如果测试只覆盖当前 case，是否还需要补一个更一般的边界测试？
+- 如果修复失败，是否有清晰的回滚方式或风险说明？
+
 ### 6. 修改 Bug
 
 修改代码时优先选择：
@@ -171,6 +255,13 @@ description: Expert bug investigation and repair workflow. Use when Codex is ask
 - 测试是否通过。
 - 如果失败，失败原因是什么。
 - 是否与本次修复有关。
+
+如果测试失败，不要为了通过测试继续叠补丁。应先判断：
+
+- 失败是否复现了原始 Bug。
+- 失败是否暴露了新的真实副作用。
+- 失败是否来自测试假设过期、环境缺失或数据不稳定。
+- 当前修复方案是否需要回退、上移修复层级或补兼容逻辑。
 
 ### 8. 补充或更新测试用例
 
@@ -212,6 +303,8 @@ should_preserve_existing_state_when_retry_fails
 - 是否只需要记录风险，不做额外修改。
 
 不要为了“顺手”扩大修改范围。只有确认同类问题真实存在，才进行额外修复。
+
+如果发现同类问题但影响范围大于本次任务，应记录为后续风险，并说明为什么本次不扩大修改。
 
 ### 10. 确认修复
 
@@ -310,6 +403,7 @@ should_preserve_existing_state_when_retry_fails
 - 不要在没有证据的情况下直接修改代码。
 - 不要只根据报错信息下结论。
 - 不要跳过复现步骤。
+- 不要在多个根因假设未排除时直接选择最方便修改的那个。
 - 不要为了通过测试删除断言。
 - 不要扩大无关修改。
 - 不要把临时日志、调试代码留在最终提交中。
