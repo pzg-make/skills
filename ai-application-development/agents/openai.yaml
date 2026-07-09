@@ -1,4 +1,4 @@
 interface:
-  display_name: "AI应用开发"
-  short_description: "AI应用需求开发RAGAgent工具调用评测成本与安全工作流"
-  default_prompt: "使用 $ai-application-development 设计、实现和验证 AI 应用能力。"
+  display_name: "AI 应用开发"
+  short_description: "AI 架构、RAG、Agent、评测、成本和安全边界"
+  default_prompt: "使用 $ai-application-development 处理 AI 应用链路、评测和生产化边界。"

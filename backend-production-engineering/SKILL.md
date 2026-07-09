@@ -1,6 +1,6 @@
 ---
 name: backend-production-engineering
-description: 服务端生产化工程工作流。用于 AI 编程助手设计、实现或改造后端服务、API、鉴权、权限、幂等、事务、缓存、消息队列、定时任务、分布式锁、限流、重试、降级、日志、监控、告警、灰度、回滚、接口兼容、并发一致性和上线验证；适用于 Java/Spring、Node、Python、Go 等服务端项目的生产级开发和稳定性治理。
+description: 服务端生产化专项工作流。用于 AI 编程助手处理后端 API、鉴权权限、幂等、事务、缓存、消息队列、定时任务、分布式锁、限流、重试、降级、接口兼容、并发一致性、灰度、回滚和上线验证。作为服务端生产风险补充 skill；端到端需求由 requirement-development 主导，Bug 根因修复由 fix-bugs 主导。
 ---
 
 # 服务端生产化工程 Skill
@@ -23,8 +23,8 @@ description: 服务端生产化工程工作流。用于 AI 编程助手设计、
 ## 与其他 Skill 的关系
 
 - 本 skill 负责服务端生产化边界，不替代 `requirement-development` 的端到端需求交付，也不替代 `fix-bugs` 的根因定位。
-- 新增或改造服务端功能时，通常由 `requirement-development` 主导，本 skill 补充接口、权限、幂等、事务、缓存、消息、观测和上线约束。
-- 服务端问题修复时，由 `fix-bugs` 主导复现和根因，本 skill 约束修复层级、并发一致性和生产验证。
+- 新增或改造服务端功能时，由 `requirement-development` 主导，本 skill 只补充接口、权限、幂等、事务、缓存、消息、观测和上线约束。
+- 服务端问题修复时，由 `fix-bugs` 主导复现和根因，本 skill 只约束修复层级、并发一致性和生产验证。
 - 涉及表结构、SQL、索引、迁移或数据修复时，结合 `database-performance-migration`，不要只从 Service 层判断数据风险。
 - 涉及日志、Trace、指标、告警、审计或脱敏细节时，结合 `observability-logging-engineering`；不要为了生产化而添加不必要日志。
 - 涉及第三方 API、Webhook、SDK 或云服务时，结合 `third-party-integration`；涉及 AI 服务链路时，再结合 `ai-application-development`。

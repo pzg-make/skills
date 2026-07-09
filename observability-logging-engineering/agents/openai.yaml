@@ -1,4 +1,4 @@
 interface:
   display_name: "日志与可观测性"
-  short_description: "通用日志链路追踪指标告警审计脱敏和排障观测工程规范"
-  default_prompt: "使用 $observability-logging-engineering 设计、审查和补充关键日志、链路追踪、指标、告警与脱敏策略。"
+  short_description: "日志、Trace、指标、告警、审计和脱敏观测策略"
+  default_prompt: "使用 $observability-logging-engineering 设计或审查必要观测与脱敏策略。"

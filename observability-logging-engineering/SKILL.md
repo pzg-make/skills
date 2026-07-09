@@ -1,6 +1,6 @@
 ---
 name: observability-logging-engineering
-description: 通用日志与可观测性工程工作流。用于 AI 编程助手设计、审查或补充服务端、前端、任务、消息、第三方集成、AI 应用和数据处理链路中的关键日志、结构化日志、链路追踪、指标、告警、审计日志、脱敏策略和排障观测能力；强调不要输出不必要的日志，只在关键步骤、关键状态变化、异常分支和排障闭环需要时补充，并优先沿用项目已有日志框架、Trace/MDC 机制、监控体系和日志格式。
+description: 日志与可观测性专项工作流。用于 AI 编程助手设计、审查或补充关键日志、结构化日志、链路追踪、指标、告警、审计日志、脱敏策略和排障观测能力，覆盖服务端、前端、任务、消息、第三方集成、AI 应用和数据处理链路。作为观测补充 skill；不要因普通开发自动添加不必要日志。
 ---
 
 # 日志与可观测性工程 Skill
@@ -23,10 +23,10 @@ description: 通用日志与可观测性工程工作流。用于 AI 编程助手
 ## 与其他 Skill 的关系
 
 - 本 skill 是日志、Trace、指标、告警、审计和脱敏的专项补充，不替代 `requirement-development`、`fix-bugs` 或 `backend-production-engineering`。
-- 服务端生产化需求通常由 `backend-production-engineering` 主导，本 skill 补充日志级别、字段、Trace、指标和告警细节。
-- Bug 修复由 `fix-bugs` 主导根因和修复，本 skill 用于补充必要的排障日志、验证日志或移除临时日志。
-- 第三方对接由 `third-party-integration` 主导官方契约，本 skill 负责第三方调用的耗时、状态、错误分类、限流和脱敏观测。
-- AI 应用由 `ai-application-development` 主导模型链路，本 skill 负责模型调用、Token、耗时、RAG 命中、工具调用和隐私边界的观测策略。
+- 服务端生产化需求由 `backend-production-engineering` 主导，本 skill 只补充日志级别、字段、Trace、指标和告警细节。
+- Bug 修复由 `fix-bugs` 主导根因和修复，本 skill 只用于补充必要排障日志、验证日志或移除临时日志。
+- 第三方对接由 `third-party-integration` 主导官方契约，本 skill 只负责第三方调用的耗时、状态、错误分类、限流和脱敏观测。
+- AI 应用由 `ai-application-development` 主导模型链路，本 skill 只负责模型调用、Token、耗时、RAG 命中、工具调用和隐私边界的观测策略。
 - 代码审查时结合 `code-review-engineering`，检查日志不足、日志噪音、敏感信息泄漏、Trace 断链和告警缺失。
 
 ## 适用场景

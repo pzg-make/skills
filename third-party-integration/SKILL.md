@@ -1,6 +1,6 @@
 ---
 name: third-party-integration
-description: 第三方 API、SDK、云服务和开源库对接校验工作流。用于 AI 编程助手需要调用外部 API、接入第三方平台、使用第三方 SDK 或库、升级/固定依赖版本、处理版本不兼容、实现 OAuth/Webhook/支付/地图/存储/消息/AI/语音/翻译等外部能力时；要求优先查询官方文档，确认 API/SDK/库版本、接口契约、认证方式、错误码、限流、弃用状态和所选版本语法后再实现。
+description: 第三方 API、SDK、云服务和开源库契约校验专项工作流。用于 AI 编程助手调用外部 API、接入第三方平台、使用或升级 SDK/库、处理版本不兼容、实现 OAuth/Webhook/支付/地图/存储/消息/AI/语音/翻译等外部能力。主导官方文档、版本、认证、错误码、限流、弃用状态和所选版本语法确认；业务落地由对应开发或修复 skill 主导。
 ---
 
 # Third Party Integration Skill
@@ -25,9 +25,9 @@ description: 第三方 API、SDK、云服务和开源库对接校验工作流。
 
 ## 与其他 Skill 的关系
 
-- 本 skill 只主导第三方契约、版本、认证、错误码、限流、弃用和 SDK/API 语法确认；业务落地仍由对应开发或修复流程负责。
-- 新功能开发同时使用 `requirement-development`，本 skill 提供第三方接入约束。
-- Bug 或版本不兼容同时使用 `fix-bugs`，本 skill 提供官方依据和版本差异判断。
+- 本 skill 主导第三方契约、版本、认证、错误码、限流、弃用和 SDK/API 语法确认；业务落地仍由对应开发或修复流程负责。
+- 新功能开发由 `requirement-development` 主导，本 skill 只提供第三方接入约束。
+- Bug 或版本不兼容由 `fix-bugs` 主导根因，本 skill 只提供官方依据和版本差异判断。
 - AI 供应商、Embedding、语音、翻译、向量库或模型 SDK 同时使用 `ai-application-development`，由 AI skill 决定产品链路和评测边界，本 skill 决定官方接入契约。
 - 服务端接口、回调、Webhook、幂等和上线风险同时结合 `backend-production-engineering`。
 - 第三方调用日志、错误分类、耗时、限流、告警和敏感响应脱敏同时结合 `observability-logging-engineering`。

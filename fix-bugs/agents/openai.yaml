@@ -1,4 +1,4 @@
 interface:
   display_name: "Bug 修复"
-  short_description: "Root-cause bug repair workflow"
-  default_prompt: "Use $fix-bugs to diagnose root cause, choose the right repair scope, fix, and verify this bug."
+  short_description: "Bug 复现、根因定位、最小修复、回归验证和风险说明"
+  default_prompt: "使用 $fix-bugs 复现问题、确认根因、完成修复并验证回归风险。"

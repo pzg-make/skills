@@ -1,6 +1,6 @@
 ---
 name: ai-application-development
-description: AI 应用开发工作流。用于 AI 编程助手处理基于大模型的产品和工程需求，包括 RAG、Agent、工具调用、Function Calling、Prompt 设计、多模型接入、流式响应、上下文管理、向量检索、评测集、幻觉控制、成本与延迟优化、安全隐私、AI 接口开发和生产化验证；当任务涉及 OpenAI、Claude、Gemini、向量数据库、语音识别、翻译、Embedding、重排序或其他 AI 第三方服务时，也应结合 third-party-integration 查询官方文档和版本契约。
+description: AI 应用开发专项工作流。用于 AI 编程助手设计、实现、调试或评估基于大模型的能力，包括 RAG、Agent、工具调用、Function Calling、Prompt、流式响应、上下文管理、向量检索、评测、幻觉控制、成本延迟、安全隐私和 AI 接口生产化。作为 AI 链路质量与边界的补充 skill；第三方契约由 third-party-integration 主导，普通端到端开发由 requirement-development 主导。
 ---
 
 # AI 应用开发 Skill
@@ -22,9 +22,9 @@ description: AI 应用开发工作流。用于 AI 编程助手处理基于大模
 
 ## 与其他 Skill 的关系
 
-- 本 skill 负责 AI 应用架构、效果边界、评测、Prompt/RAG/Agent 质量和 AI 安全；不替代通用需求开发流程。
-- 用户要求直接实现 AI 功能时，通常与 `requirement-development` 同时使用；本 skill 提供 AI 专项约束。
-- 涉及 OpenAI、Claude、Gemini、Embedding、语音、翻译、向量库或 SDK 版本时，必须结合 `third-party-integration` 查询官方契约。
+- 本 skill 负责 AI 链路架构、效果边界、评测、Prompt/RAG/Agent 质量和 AI 安全；不替代通用需求开发流程。
+- 用户要求直接实现 AI 功能时，由 `requirement-development` 主导交付，本 skill 只补充 AI 专项约束。
+- 涉及 OpenAI、Claude、Gemini、Embedding、语音、翻译、向量库或 SDK 版本时，由 `third-party-integration` 主导官方契约核验。
 - 涉及服务端 API、鉴权、流式响应、幂等、任务、监控或上线策略时，结合 `backend-production-engineering`。
 - 涉及模型调用日志、Token 成本、RAG 命中、工具调用链路、评测标识、Prompt/响应隐私或告警时，结合 `observability-logging-engineering`。
 - 涉及向量表、检索索引、数据回填或知识库迁移时，结合 `database-performance-migration`。

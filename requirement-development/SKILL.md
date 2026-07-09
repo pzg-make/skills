@@ -1,6 +1,6 @@
 ---
 name: requirement-development
-description: 通用型需求开发工作流。用于 AI 编程助手根据用户提出的新功能、业务改造、接口变更、前后端开发、数据模型调整、集成接入、重构、性能优化、可靠性建设、测试补充或技术债治理需求，完成需求理解、范围确认、方案设计、代码实现、验证测试、风险说明和交付总结；尤其适用于用户希望直接落地开发，而不是只做需求拆解或方案讨论时。
+description: 通用型需求开发主流程。用于 AI 编程助手根据用户提出的新功能、业务改造、接口变更、前后端开发、数据模型调整、集成接入、重构、性能优化、可靠性建设、测试补充或技术债治理需求，完成需求理解、方案设计、代码实现、验证测试、风险说明和交付总结。适用于用户希望直接落地开发；需求拆分由 requirement-breakdown 主导，Bug 根因修复由 fix-bugs 主导。
 ---
 
 # Requirement Development Skill
@@ -22,13 +22,13 @@ description: 通用型需求开发工作流。用于 AI 编程助手根据用户
 
 ## 与其他 Skill 的关系
 
-- 需求仍模糊、需要拆范围或排期时，可结合 `requirement-breakdown`，先拆清楚再开发。
-- 需求本质是 Bug、回归或异常行为时，可结合 `fix-bugs`，按根因修复和回归验证处理。
-- 涉及生产级后端接口、鉴权、幂等、缓存、消息、任务、监控或上线策略时，结合 `backend-production-engineering`；本 skill 负责端到端落地，后者负责服务端生产化边界。
-- 涉及表结构、索引、慢 SQL、迁移、数据修复或历史数据兼容时，结合 `database-performance-migration`；不要只在应用层处理数据库风险。
-- 涉及 RAG、Agent、Prompt、模型调用、AI 评测或 AI 安全边界时，结合 `ai-application-development`；本 skill 负责需求交付闭环，后者负责 AI 能力质量和生产化。
-- 涉及第三方 API、SDK、云服务、模型供应商或依赖版本时，结合 `third-party-integration`，先确认官方契约和项目实际版本。
-- 涉及日志、Trace、指标、告警、审计或脱敏时，结合 `observability-logging-engineering`；优先沿用项目已有日志框架，只在关键步骤补充必要观测。
+- 需求仍模糊、需要拆范围或排期时，由 `requirement-breakdown` 主导，先拆清楚再开发。
+- 需求本质是 Bug、回归或异常行为时，由 `fix-bugs` 主导根因修复和回归验证。
+- 涉及生产级后端接口、鉴权、幂等、缓存、消息、任务、监控或上线策略时，本 skill 负责端到端落地，`backend-production-engineering` 只补充服务端生产化边界。
+- 涉及表结构、索引、慢 SQL、迁移、数据修复或历史数据兼容时，结合 `database-performance-migration` 补充数据库风险。
+- 涉及 RAG、Agent、Prompt、模型调用、AI 评测或 AI 安全边界时，结合 `ai-application-development` 补充 AI 能力质量和生产化约束。
+- 涉及第三方 API、SDK、云服务、模型供应商或依赖版本时，由 `third-party-integration` 主导官方契约和项目版本确认。
+- 涉及日志、Trace、指标、告警、审计或脱敏时，结合 `observability-logging-engineering`，只在关键步骤补充必要观测。
 - 当前项目存在项目专用 skill 时，同时遵守该项目的模块边界、构建命令、测试约定、代码风格和交付规则。
 
 ## 输入信息

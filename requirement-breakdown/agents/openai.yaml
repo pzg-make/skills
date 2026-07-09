@@ -1,4 +1,4 @@
 interface:
   display_name: "需求拆分"
-  short_description: "Break down development needs into tasks"
-  default_prompt: "Use $requirement-breakdown to turn this development need into an actionable delivery plan."
+  short_description: "把需求拆成范围、流程、任务、优先级、风险和验收"
+  default_prompt: "使用 $requirement-breakdown 将开发需求拆成可评审和可排期的任务计划。"

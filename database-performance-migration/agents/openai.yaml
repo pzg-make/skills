@@ -1,4 +1,4 @@
 interface:
   display_name: "数据库性能迁移"
-  short_description: "数据库建模索引慢SQL迁移兼容数据修复回滚验证工作流"
-  default_prompt: "使用 $database-performance-migration 处理数据库设计、性能优化、迁移和数据修复。"
+  short_description: "数据库建模、索引、慢 SQL、迁移和数据修复"
+  default_prompt: "使用 $database-performance-migration 处理数据库性能、迁移和数据安全风险。"

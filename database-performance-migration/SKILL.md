@@ -1,6 +1,6 @@
 ---
 name: database-performance-migration
-description: 数据库性能与迁移工作流。用于 AI 编程助手处理数据库建模、表结构设计、字段新增、索引设计、慢 SQL 优化、分页优化、事务隔离、锁冲突、数据一致性、历史数据兼容、迁移脚本、数据修复、回滚方案、验证 SQL 和数据库相关生产风险；适用于 MySQL、PostgreSQL、Redis、Elasticsearch、向量数据库及常见 ORM/Mapper 场景。
+description: 数据库性能与迁移专项工作流。用于 AI 编程助手处理数据库建模、表结构设计、字段新增、索引、慢 SQL、分页、事务隔离、锁冲突、数据一致性、历史数据兼容、迁移脚本、数据修复、回滚和验证 SQL。作为数据库风险补充 skill；功能交付由 requirement-development 主导，数据问题根因由 fix-bugs 主导。
 ---
 
 # 数据库性能与迁移 Skill
@@ -23,8 +23,8 @@ description: 数据库性能与迁移工作流。用于 AI 编程助手处理数
 ## 与其他 Skill 的关系
 
 - 本 skill 负责数据库结构、SQL、索引、迁移、数据修复和数据安全边界；不替代服务端业务流程设计。
-- 功能开发中的数据库改动由 `requirement-development` 主导交付，本 skill 负责补齐数据兼容、性能、迁移和回滚约束。
-- 数据问题修复由 `fix-bugs` 主导根因和复现，本 skill 负责安全的数据修复、回滚和验证方案。
+- 功能开发中的数据库改动由 `requirement-development` 主导交付，本 skill 只补齐数据兼容、性能、迁移和回滚约束。
+- 数据问题修复由 `fix-bugs` 主导根因和复现，本 skill 只负责安全的数据修复、回滚和验证方案。
 - 应用层事务、幂等、缓存、消息和接口兼容由 `backend-production-engineering` 负责，本 skill 只处理数据库侧事实和风险。
 - 向量数据库、搜索索引或第三方数据库服务涉及官方 API/SDK 时，结合 `third-party-integration`；知识库/RAG 数据链路再结合 `ai-application-development`。
 

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Resume Builder"
-  short_description: "Import, polish, preserve, and export resumes"
-  default_prompt: "Use $resume-builder to import, edit, preserve formatting, polish, and export a professional resume."
+  display_name: "简历制作"
+  short_description: "导入、保真编辑、润色、定制和导出专业简历"
+  default_prompt: "使用 $resume-builder 导入、编辑、润色并导出专业简历。"

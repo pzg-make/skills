@@ -1,4 +1,4 @@
 interface:
-  display_name: "Harness Engineering"
-  short_description: "Generate Agent-ready project harnesses"
-  default_prompt: "Use $harness-engineering to make this repository Agent-ready with project rules, docs, scripts, and validation guidance."
+  display_name: "项目 Harness"
+  short_description: "生成 Agent 友好的项目规则、架构文档和验证入口"
+  default_prompt: "使用 $harness-engineering 为仓库生成项目规则、结构文档和验证入口。"
