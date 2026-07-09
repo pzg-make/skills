@@ -1,0 +1,4 @@
+interface:
+  display_name: "服务端生产化"
+  short_description: "服务端接口鉴权幂等事务缓存消息监控灰度回滚工程规范"
+  default_prompt: "使用 $backend-production-engineering 设计、实现和验证生产级服务端能力。"

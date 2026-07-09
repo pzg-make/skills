@@ -23,6 +23,15 @@ description: 第三方 API、SDK、云服务和开源库对接校验工作流。
 10. 如果无法联网或无法访问官方文档，必须明确说明无法完成官方核验，并基于本地依赖和已有代码谨慎推断。
 11. 最终交付必须说明参考了哪些官方来源、适配了哪个版本、如何验证。
 
+## 与其他 Skill 的关系
+
+- 本 skill 只主导第三方契约、版本、认证、错误码、限流、弃用和 SDK/API 语法确认；业务落地仍由对应开发或修复流程负责。
+- 新功能开发同时使用 `requirement-development`，本 skill 提供第三方接入约束。
+- Bug 或版本不兼容同时使用 `fix-bugs`，本 skill 提供官方依据和版本差异判断。
+- AI 供应商、Embedding、语音、翻译、向量库或模型 SDK 同时使用 `ai-application-development`，由 AI skill 决定产品链路和评测边界，本 skill 决定官方接入契约。
+- 服务端接口、回调、Webhook、幂等和上线风险同时结合 `backend-production-engineering`。
+- 第三方调用日志、错误分类、耗时、限流、告警和敏感响应脱敏同时结合 `observability-logging-engineering`。
+
 ## 适用场景
 
 - 调用第三方 REST、GraphQL、gRPC、WebSocket、Webhook 或文件上传 API。

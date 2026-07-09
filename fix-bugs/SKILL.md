@@ -22,6 +22,15 @@ description: Expert bug investigation and repair workflow. Use when an AI coding
 9. 复杂或信息不完整的 Bug，先形成可证伪假设，再动代码；不要带着单一猜测直接修改。
 10. 修复前必须定义“完成标准”：原问题如何证明已消失、哪些相似路径需要检查、哪些副作用不能引入。
 
+## 与其他 Skill 的关系
+
+- 本 skill 是 Bug、回归、失败测试和异常行为的主流程；不要用 `requirement-development` 直接绕过根因分析。
+- 如果根因落在服务端接口、幂等、事务、缓存、消息、任务或生产稳定性上，结合 `backend-production-engineering` 确认修复边界和验证矩阵。
+- 如果根因落在表结构、SQL、索引、迁移、历史数据或数据修复上，结合 `database-performance-migration`，先保护数据安全和回滚路径。
+- 如果根因落在第三方 API、SDK 或版本兼容上，结合 `third-party-integration` 核对官方契约。
+- 如果根因落在模型输出、RAG、Agent、Prompt 或 AI 评测缺口上，结合 `ai-application-development`。
+- 如果问题暴露出日志不足、Trace 断链、临时日志残留、敏感信息泄漏或告警缺失，结合 `observability-logging-engineering` 补齐必要观测。
+
 ## 输入信息
 
 用户可能提供以下一种或多种信息：
